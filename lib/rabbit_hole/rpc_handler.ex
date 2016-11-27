@@ -1,6 +1,11 @@
 defmodule RabbitHole.RPCHandler do
   alias AMQP.Basic
 
+  @doc ~S"""
+  Callback function to receive a message.
+
+  Return `{:ok, response}` to acknowledge the message, or return `{:error, reason}` to reject it.
+  """
   @callback on_message(payload :: term) :: {:ok, response :: term} | {:error, reason :: term}
 
   defmacro __using__(_) do

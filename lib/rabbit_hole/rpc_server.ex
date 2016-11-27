@@ -1,6 +1,11 @@
 defmodule RabbitHole.RPCServer do
   use Supervisor
 
+  @doc ~S"""
+  Start a RPC server for `queue_name` with `handler`.
+
+  Each RPC message received from the queue would be dispatched a process running the handler.
+  """
   def start_link(queue_name, handler, connection \\ RabbitHole.connection) when is_bitstring(queue_name) and is_atom(handler) do
     Supervisor.start_link(__MODULE__, [connection, queue_name, handler])
   end
