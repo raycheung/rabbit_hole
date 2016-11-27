@@ -1,6 +1,8 @@
 alias Experimental.GenStage
 
 defmodule RabbitHole.RPCReceiver do
+  @moduledoc ~S"Receive messages from a queue and produce events."
+
   use GenStage
   alias AMQP.{Basic, Channel, Queue}
   require Logger
