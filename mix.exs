@@ -32,7 +32,6 @@ defmodule RabbitHole.Mixfile do
   defp deps do
     [{:amqp, "~> 0.1"},
      {:amqp_client, git: "https://github.com/jbrisbin/amqp_client.git", override: true},
-     {:rabbit_common, git: "https://github.com/Nezteb/rabbit_common.git", override: true},
      {:gen_stage, "~> 0.9"},
      {:ex_doc, ">= 0.0.0", only: :dev},
      {:credo, "~> 0.4", only: [:dev, :test]}]
