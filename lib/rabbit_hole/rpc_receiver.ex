@@ -2,18 +2,14 @@ alias Experimental.GenStage
 
 defmodule RabbitHole.RPCReceiver do
   use GenStage
-  alias AMQP.Connection
-  alias AMQP.Channel
-  alias AMQP.Queue
-  alias AMQP.Basic
+  alias AMQP.{Basic, Channel, Queue}
   require Logger
 
-  def start_link(name, queue_name) when is_bitstring(queue_name) do
-    GenStage.start_link(__MODULE__, queue_name, name: name)
+  def start_link(name, connection, queue_name) when is_bitstring(queue_name) do
+    GenStage.start_link(__MODULE__, [connection, queue_name], name: name)
   end
 
-  def init(queue_name) do
-    {:ok, connection} = Connection.open(RabbitHole.rabbitmq_url)
+  def init([connection, queue_name]) do
     {:ok, channel} = Channel.open(connection)
     {:ok, queue} = Queue.declare(channel, queue_name, durable: true)
     Basic.consume channel, queue_name
