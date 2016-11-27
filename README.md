@@ -1,6 +1,6 @@
 # RabbitHole
 
-**TODO: Add description**
+A simplified interface for RPC over RabbitMQ.
 
 ## Installation
 
@@ -10,7 +10,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def deps do
-      [{:rabbit_hole, "~> 0.1.0"}]
+      [{:rabbit_hole, "~> 0.2.0"}]
     end
     ```
 
